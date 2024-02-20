@@ -46,4 +46,3 @@ void insertion_sort_list(listint_t **list)
         current = next_node;
     }
 }
-
