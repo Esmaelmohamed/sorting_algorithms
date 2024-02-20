@@ -1,44 +1,60 @@
 #include "sort.h"
 
 /**
- * selection_sort - Sorts an array of integers in ascending order
- *                  using the Selection sort algorithm.
- * @array: Pointer to the array to be sorted.
- * @size: Size of the array.
+ * swap - Swap two nodes in a doubly linked list.
+ * @h: Pointer to the head of the list.
+ * @n1: First node to swap.
+ * @n2: Second node to swap.
  *
  * Description:
- *   This function sorts an array of integers using the Selection sort algorithm.
- *   It iterates through the array, finding the minimum element and swapping it
- *   with the current element at the beginning of the unsorted portion of the array. 
- * 
- * The time complexity of the Selection Sort algorithm is as follows:
- * Best Case: O(n^2)
- * Average Case: O(n^2)
- * Worst Case: O(n^2)
+ *   This function swaps two nodes in a doubly linked list. It updates the
+ *   pointers of the nodes and the head of the list if necessary.
  */
-void selection_sort(int *array, size_t size)
+void swap(listint_t **h, listint_t *n1, listint_t *n2)
 {
-    size_t i, j, min_index;
-    int temp;
+    if (n1->prev != NULL)
+        n1->prev->next = n2;
+    else
+        *h = n2;
 
-    if (array == NULL || size < 2)
+    if (n2->next != NULL)
+        n2->next->prev = n1;
+
+    n1->next = n2->next;
+    n2->prev = n1->prev;
+    n1->prev = n2;
+    n2->next = n1;
+}
+
+/**
+ * insertion_sort_list - Sorts a doubly linked list of integers
+ *                       using the insertion sort algorithm.
+ * @list: Pointer to the head of the doubly linked list.
+ *
+ * Description:
+ *   This function sorts a doubly linked list of integers in ascending order
+ *   using the insertion sort algorithm. It iterates through the list,
+ *   swapping adjacent nodes as needed to place each element in its correct
+ *   position.
+ *   It prints the list after each swap operation.
+ */
+void insertion_sort_list(listint_t **list)
+{
+    listint_t *current, *sorted;
+
+    if (list == NULL || *list == NULL || (*list)->next == NULL)
         return;
 
-    for (i = 0; i < size - 1; i++)
+    sorted = *list;
+    current = sorted->next;
+
+    while (current != NULL)
     {
-        min_index = i;
-
-        for (j = i + 1; j < size; j++)
+        while (current->prev != NULL && current->n < current->prev->n)
         {
-            if (array[j] < array[min_index])
-                min_index = j;
+            swap(list, current->prev, current);
+            print_list((const listint_t *)*list); // Print list after each swap
         }
-
-        if (min_index != i)
-        {
-            temp = array[i];
-            array[i] = array[min_index];
-            array[min_index] = temp;
-        }
+        current = current->next;
     }
 }
