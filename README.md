@@ -54,3 +54,8 @@ gcc -o quick_sort quick_sort.c
 
 
 Feel CREATED BY Esmael Mohamed 
+ 
+## Additional Resources
+
+- [ALX](https://www.alx.com/) - ALX is a software engineering program that provides training and mentorship.
+- [CS50 Harvard](https://cs50.harvard.edu/) - CS50 is a renowned introduction to computer science course offered by Harvard University.
