@@ -17,7 +17,7 @@ void swap(int *jar1, int *jar2)
 
 /**
  * selection_sort - Arrange an array of integers in ascending order using selection sort.
- * @arr: Pointer to the array of integers.
+ * @array: Pointer to the array of integers.
  * @size: Size of the array.
  *
  * Description:
