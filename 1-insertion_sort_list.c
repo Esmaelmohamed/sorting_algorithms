@@ -1,48 +1,44 @@
 #include "sort.h"
 
 /**
- * insertion_sort_list - Sorts a doubly linked list of integers in ascending order
- *                        using the Insertion sort algorithm
- * @list: Double pointer to the head of the list
- *
- * Return: None
+ * selection_sort - Sorts an array of integers in ascending order
+ *                  using the Selection sort algorithm.
+ * @array: Pointer to the array to be sorted.
+ * @size: Size of the array.
  *
  * Description:
- *   This function sorts a doubly linked list of integers in ascending order
- *   using the Insertion sort algorithm. It swaps the nodes themselves to perform
- *   the sorting.
- *
- * Complexity:
- *   - Best Case: O(n) - When the list is already sorted.
- *   - Average Case: O(n^2) - When elements are randomly distributed.
- *   - Worst Case: O(n^2) - When the list is sorted in descending order.
+ *   This function sorts an array of integers using the Selection sort algorithm.
+ *   It iterates through the array, finding the minimum element and swapping it
+ *   with the current element at the beginning of the unsorted portion of the array. 
+ * 
+ * The time complexity of the Selection Sort algorithm is as follows:
+ * Best Case: O(n^2)
+ * Average Case: O(n^2)
+ * Worst Case: O(n^2)
  */
-void insertion_sort_list(listint_t **list)
+void selection_sort(int *array, size_t size)
 {
-    listint_t *current, *next_node;
+    size_t i, j, min_index;
+    int temp;
 
-    if (list == NULL || *list == NULL)
+    if (array == NULL || size < 2)
         return;
 
-    current = (*list)->next;
-
-    while (current != NULL)
+    for (i = 0; i < size - 1; i++)
     {
-        next_node = current->next;
-        while (current->prev != NULL && current->n < current->prev->n)
+        min_index = i;
+
+        for (j = i + 1; j < size; j++)
         {
-            current->prev->next = current->next;
-            if (current->next != NULL)
-                current->next->prev = current->prev;
-            current->next = current->prev;
-            current->prev = current->prev->prev;
-            current->next->prev = current;
-            if (current->prev != NULL)
-                current->prev->next = current;
-            else
-                *list = current;
-            print_list(*list);
+            if (array[j] < array[min_index])
+                min_index = j;
         }
-        current = next_node;
+
+        if (min_index != i)
+        {
+            temp = array[i];
+            array[i] = array[min_index];
+            array[min_index] = temp;
+        }
     }
 }
