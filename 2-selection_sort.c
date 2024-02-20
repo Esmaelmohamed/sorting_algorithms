@@ -31,22 +31,22 @@ void swap(int *jar1, int *jar2)
  *   - Average Case: O(n^2) - When elements are randomly distributed.
  *   - Worst Case: O(n^2) - When the array is sorted in descending order.
  */
-void selection_sort(int *arr, size_t size)
+void  selection_sort(int *array, size_t size)
 {
     size_t i,j;
-    if (arr == NULL || size < 2)
+    if (array == NULL || size < 2)
         return;
 
     for ( i = 0; i < size - 1; i++)
     {
-        int *min_element = arr + i;
+        int *min_element = array + i;
         for ( j = i + 1; j < size; j++)
-            min_element = (arr[j] < *min_element) ? (arr + j) : min_element;
+            min_element = (array[j] < *min_element) ? (array + j) : min_element;
 
-        if ((arr + i) != min_element)
+        if ((array + i) != min_element)
         {
-            swap(arr + i, min_element);
-            print_array(arr, size);
+            swap(array + i, min_element);
+            print_array(array, size);
         }
     }
 }
