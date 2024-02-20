@@ -53,7 +53,7 @@ void insertion_sort_list(listint_t **list)
         while (current->prev != NULL && current->n < current->prev->n)
         {
             swap(list, current->prev, current);
-            print_list((const listint_t *)*list); // Print list after each swap
+            print_list((const listint_t *)*list); 
         }
         current = current->next;
     }
